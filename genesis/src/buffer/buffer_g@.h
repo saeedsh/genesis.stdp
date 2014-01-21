@@ -1,0 +1,10 @@
+#define graded_INPUT 1
+#define linear_INPUT 0
+#define random_RATE 0
+#define random_MINMAX 1
+#define sigmoid_INPUT 0
+#define sigmoid_THRESH 1
+#define sigmoid_GAIN 2
+#define sigmoid_AMP 3
+#define spike_INPUT 0
+#define spike_THRESH 1

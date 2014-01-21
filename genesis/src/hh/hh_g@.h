@@ -1,0 +1,11 @@
+#define CALC_MINF 100
+#define CALC_ALPHA 101
+#define CALC_BETA 102
+#define hh_channel_VOLTAGE 0
+#define vdep_gate_VOLTAGE 0
+#define vdep_gate_EREST 2
+#define vdep_channel_VOLTAGE 0
+#define vdep_channel_MULTGATE 1
+#define vdep_channel_ADDGATE 2
+#define vdep_channel_GMAX 3
+#define vdep_channel_EK 4

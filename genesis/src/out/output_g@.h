@@ -1,0 +1,10 @@
+#define FLUSH 1001
+#define OUT_OPEN 1002
+#define OUT_WRITE 1003
+#define disk_out_SAVE 0
+#define par_disk_out_SAVE 0
+#define xviewdata_SAVE 0
+#define asc_file_SAVE 0
+#define par_asc_file_SAVE 0
+#define res_asc_file_SAVE 0
+#define spikehistory_SPIKESAVE -1
