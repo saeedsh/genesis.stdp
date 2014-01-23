@@ -407,6 +407,8 @@ __BZ;info.name="HebbSynchan_type.max_weight";info.offset=(caddr_t)(&(var.max_wei
 if (strlen(fields) > 2500) { Error(); printf("Field size too long for object HebbSynchan_type, field max_weight\n**See sys/code_sym.c and increase the value of MAX_FIELDS_SIZE\n\n"); }
 __BZ;info.name="HebbSynchan_type.change_weights";info.offset=(caddr_t)(&(var.change_weights))-(caddr_t)(&var);		info.type="short";info.type_size=sizeof(short);InfoHashPut(&info);strcat(fields,"change_weights");strcat(fields,"\n");
 if (strlen(fields) > 2500) { Error(); printf("Field size too long for object HebbSynchan_type, field change_weights\n**See sys/code_sym.c and increase the value of MAX_FIELDS_SIZE\n\n"); }
+__BZ;info.name="HebbSynchan_type.avg_Ca";info.offset=(caddr_t)(&(var.avg_Ca))-(caddr_t)(&var);		info.type="double";info.type_size=sizeof(double);InfoHashPut(&info);strcat(fields,"avg_Ca");strcat(fields,"\n");
+if (strlen(fields) > 2500) { Error(); printf("Field size too long for object HebbSynchan_type, field avg_Ca\n**See sys/code_sym.c and increase the value of MAX_FIELDS_SIZE\n\n"); }
 FieldHashPut("HebbSynchan_type",fields);
 }
 void INFO_Fac_Synapse_type(){

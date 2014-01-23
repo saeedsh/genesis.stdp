@@ -37,6 +37,7 @@
 #define RAND_ACTIVATION    2
 #define MOD                3 
 #define WEIGHT_CHANGE_MOD  4
+#define CALCIUM            5
 
 /* extra action for synchan2 */
 #define RESETBUFFER 1001

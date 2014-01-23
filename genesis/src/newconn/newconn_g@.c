@@ -377,6 +377,161 @@ DirectSetElement(object->defaults, "change_weights", "1");
   FieldListMakePermanent(object);
   MsgListMakePermanent(object);
 
+  /* Definition of object stdpsynchan */
+  BZERO(&tobject,sizeof(GenesisObject));
+  tobject.name = "stdpsynchan";
+  tobject.type = "HebbSynchan_type";
+  tobject.size = sizeof(struct HebbSynchan_type);
+  { extern int StdpSynchan(); tobject.function = StdpSynchan; HashFunc("StdpSynchan", StdpSynchan, "int"); }
+  ObjectAddClass(&tobject,ClassID("segment"),CLASS_PERMANENT);
+  ObjectAddClass(&tobject,ClassID("channel"),CLASS_PERMANENT);
+  ObjectAddClass(&tobject,ClassID("synchannel"),CLASS_PERMANENT);
+  AddDefaultFieldList(&tobject);
+  tobject.defaults = (Element*) calloc(1, tobject.size);
+  AddObject(&tobject);
+  object = GetObject("stdpsynchan");
+  object->defaults->object = object;
+  object->defaults->name = CopyString("stdpsynchan");
+  object->author = "Mike Vanier 4/96 Caltech";
+  { extern int StdpSynchan(); AddActionToObject(object, "CREATE", StdpSynchan, 0) ? 0 : (Error(), printf("adding action 'CREATE' to object 'stdpsynchan'\n")); HashFunc("StdpSynchan", StdpSynchan, "int"); }
+  { extern int StdpSynchan(); AddActionToObject(object, "INIT", StdpSynchan, 0) ? 0 : (Error(), printf("adding action 'INIT' to object 'stdpsynchan'\n")); HashFunc("StdpSynchan", StdpSynchan, "int"); }
+  { extern int StdpSynchan(); AddActionToObject(object, "PROCESS", StdpSynchan, 0) ? 0 : (Error(), printf("adding action 'PROCESS' to object 'stdpsynchan'\n")); HashFunc("StdpSynchan", StdpSynchan, "int"); }
+  { extern int StdpSynchan(); AddActionToObject(object, "RESET", StdpSynchan, 0) ? 0 : (Error(), printf("adding action 'RESET' to object 'stdpsynchan'\n")); HashFunc("StdpSynchan", StdpSynchan, "int"); }
+  { extern int StdpSynchan(); AddActionToObject(object, "RECALC", StdpSynchan, 0) ? 0 : (Error(), printf("adding action 'RECALC' to object 'stdpsynchan'\n")); HashFunc("StdpSynchan", StdpSynchan, "int"); }
+  { extern int StdpSynchan(); AddActionToObject(object, "CHECK", StdpSynchan, 0) ? 0 : (Error(), printf("adding action 'CHECK' to object 'stdpsynchan'\n")); HashFunc("StdpSynchan", StdpSynchan, "int"); }
+  { extern int StdpSynchan(); AddActionToObject(object, "SAVE2", StdpSynchan, 0) ? 0 : (Error(), printf("adding action 'SAVE2' to object 'stdpsynchan'\n")); HashFunc("StdpSynchan", StdpSynchan, "int"); }
+  { extern int StdpSynchan(); AddActionToObject(object, "RESTORE2", StdpSynchan, 0) ? 0 : (Error(), printf("adding action 'RESTORE2' to object 'stdpsynchan'\n")); HashFunc("StdpSynchan", StdpSynchan, "int"); }
+  { extern int StdpSynchan(); AddActionToObject(object, "EVENT", StdpSynchan, 0) ? 0 : (Error(), printf("adding action 'EVENT' to object 'stdpsynchan'\n")); HashFunc("StdpSynchan", StdpSynchan, "int"); }
+  { extern int StdpSynchan(); AddActionToObject(object, "ADDMSGIN", StdpSynchan, 0) ? 0 : (Error(), printf("adding action 'ADDMSGIN' to object 'stdpsynchan'\n")); HashFunc("StdpSynchan", StdpSynchan, "int"); }
+  { extern int StdpSynchan(); AddActionToObject(object, "DELETEMSGIN", StdpSynchan, 0) ? 0 : (Error(), printf("adding action 'DELETEMSGIN' to object 'stdpsynchan'\n")); HashFunc("StdpSynchan", StdpSynchan, "int"); }
+  { extern int StdpSynchan(); AddActionToObject(object, "MSGINDELETED", StdpSynchan, 0) ? 0 : (Error(), printf("adding action 'MSGINDELETED' to object 'stdpsynchan'\n")); HashFunc("StdpSynchan", StdpSynchan, "int"); }
+  { extern int StdpSynchan(); AddActionToObject(object, "RESETBUFFER", StdpSynchan, 0) ? 0 : (Error(), printf("adding action 'RESETBUFFER' to object 'stdpsynchan'\n")); HashFunc("StdpSynchan", StdpSynchan, "int"); }
+  { extern int StdpSynchan(); AddActionToObject(object, "DELETE", StdpSynchan, 0) ? 0 : (Error(), printf("adding action 'DELETE' to object 'stdpsynchan'\n")); HashFunc("StdpSynchan", StdpSynchan, "int"); }
+  { extern int StdpSynchan(); AddActionToObject(object, "COPY", StdpSynchan, 0) ? 0 : (Error(), printf("adding action 'COPY' to object 'stdpsynchan'\n")); HashFunc("StdpSynchan", StdpSynchan, "int"); }
+  { extern int StdpSynchan(); AddActionToObject(object, "SET", StdpSynchan, 0) ? 0 : (Error(), printf("adding action 'SET' to object 'stdpsynchan'\n")); HashFunc("StdpSynchan", StdpSynchan, "int"); }
+  { extern int StdpSynchan(); AddActionToObject(object, "SHOW", StdpSynchan, 0) ? 0 : (Error(), printf("adding action 'SHOW' to object 'stdpsynchan'\n")); HashFunc("StdpSynchan", StdpSynchan, "int"); }
+  slotnames[0] = "Vm";
+  MsgListAdd(object, "VOLTAGE", stdpsynchan_VOLTAGE, slotnames, 1);
+  slotnames[0] = "activation";
+  MsgListAdd(object, "ACTIVATION", stdpsynchan_ACTIVATION, slotnames, 1);
+  slotnames[0] = "probability";
+  slotnames[1] = "amplitude";
+  MsgListAdd(object, "RAND_ACTIVATION", stdpsynchan_RAND_ACTIVATION, slotnames, 2);
+  slotnames[0] = "modulation";
+  MsgListAdd(object, "MOD", stdpsynchan_MOD, slotnames, 1);
+  slotnames[0] = "modulation";
+  MsgListAdd(object, "WEIGHT_CHANGE_MOD", stdpsynchan_WEIGHT_CHANGE_MOD, slotnames, 1);
+  MsgListAdd(object, "SPIKE", stdpsynchan_SPIKE, slotnames, 0);
+  slotnames[0] = "Ca";
+  MsgListAdd(object, "CALCIUM", stdpsynchan_CALCIUM, slotnames, 1);
+  SetFieldListProt(object, "activation", FIELD_READONLY);
+  SetFieldListDesc(object, "activation", "driving force for channel conductance");
+  SetFieldListProt(object, "Ik", FIELD_READONLY);
+  SetFieldListDesc(object, "Ik", "channel current");
+  SetFieldListProt(object, "Gk", FIELD_READONLY);
+  SetFieldListDesc(object, "Gk", "conductance of channel");
+  SetFieldListProt(object, "Ek", FIELD_READWRITE);
+  SetFieldListDesc(object, "Ek", "reversal potential of channel");
+  SetFieldListProt(object, "X", FIELD_HIDDEN);
+  SetFieldListDesc(object, "X", "internal variable for synaptic conductances");
+  SetFieldListProt(object, "Y", FIELD_HIDDEN);
+  SetFieldListDesc(object, "Y", "internal variable for synaptic conductances");
+  SetFieldListProt(object, "xconst1", FIELD_HIDDEN);
+  SetFieldListDesc(object, "xconst1", "internal constant for synaptic conductances");
+  SetFieldListProt(object, "xconst2", FIELD_HIDDEN);
+  SetFieldListDesc(object, "xconst2", "internal constant for synaptic conductances");
+  SetFieldListProt(object, "yconst1", FIELD_HIDDEN);
+  SetFieldListDesc(object, "yconst1", "internal constant for synaptic conductances");
+  SetFieldListProt(object, "yconst2", FIELD_HIDDEN);
+  SetFieldListDesc(object, "yconst2", "internal constant for synaptic conductances");
+  SetFieldListProt(object, "norm", FIELD_HIDDEN);
+  SetFieldListDesc(object, "norm", "normalization factor for psp amplitude");
+  SetFieldListProt(object, "tau1", FIELD_READWRITE);
+  SetFieldListDesc(object, "tau1", "first time constant of channel activation");
+  SetFieldListProt(object, "tau2", FIELD_READWRITE);
+  SetFieldListDesc(object, "tau2", "second time constant of channel activation");
+  SetFieldListProt(object, "gmax", FIELD_READWRITE);
+  SetFieldListDesc(object, "gmax", "peak conductance");
+  SetFieldListProt(object, "frequency", FIELD_READWRITE);
+  SetFieldListDesc(object, "frequency", "random activation frequency");
+DirectSetElement(object->defaults, "frequency", "0.0");
+  SetFieldListProt(object, "nsynapses", FIELD_READONLY);
+  SetFieldListDesc(object, "nsynapses", "Number of incoming spike messages");
+  SetFieldListProt(object, "synapse_size", FIELD_HIDDEN);
+  SetFieldListDesc(object, "synapse_size", "size of synapse in bytes");
+  SetFieldListProt(object, "event_buffer_size", FIELD_READONLY);
+  SetFieldListDesc(object, "event_buffer_size", "size of event buffer");
+DirectSetElement(object->defaults, "event_buffer_size", "0");
+  SetFieldListProt(object, "pending_events", FIELD_READONLY);
+  SetFieldListDesc(object, "pending_events", "number of pending spike events in event buffer");
+DirectSetElement(object->defaults, "pending_events", "0");
+  SetFieldListProt(object, "FreeSynapticEvents", FIELD_HIDDEN);
+  SetFieldListDesc(object, "FreeSynapticEvents", "free list of synaptic event nodes");
+  SetFieldListProt(object, "PendingSynapticEvents", FIELD_HIDDEN);
+  SetFieldListDesc(object, "PendingSynapticEvents", "list of pending synaptic events");
+  SetFieldListProt(object, "nodes_per_synapse", FIELD_READWRITE);
+  SetFieldListDesc(object, "nodes_per_synapse", "number of event nodes to allocate per synapse");
+DirectSetElement(object->defaults, "nodes_per_synapse", "1.0");
+  SetFieldListProt(object, "list_alloced", FIELD_HIDDEN);
+  SetFieldListDesc(object, "list_alloced", "flag for whether the freelist has been allocated");
+DirectSetElement(object->defaults, "list_alloced", "0");
+  SetFieldListProt(object, "allocednodes", FIELD_HIDDEN);
+  SetFieldListDesc(object, "allocednodes", "number of nodes that are the head of a malloced block");
+DirectSetElement(object->defaults, "allocednodes", "0");
+  SetFieldListProt(object, "synapse", FIELD_READWRITE);
+  SetFieldListDesc(object, "synapse", "synapse buffer");
+  SetFieldListProt(object, "pre_tau1", FIELD_READWRITE);
+  SetFieldListDesc(object, "pre_tau1", "first time constant for presynaptic averaging");
+DirectSetElement(object->defaults, "pre_tau1", "0.010");
+  SetFieldListProt(object, "pre_tau2", FIELD_READWRITE);
+  SetFieldListDesc(object, "pre_tau2", "second time constant for presynaptic averaging");
+DirectSetElement(object->defaults, "pre_tau2", "0.100");
+  SetFieldListProt(object, "pre_thresh_lo", FIELD_READWRITE);
+  SetFieldListDesc(object, "pre_thresh_lo", "lower presynaptic threshold");
+DirectSetElement(object->defaults, "pre_thresh_lo", "3.0");
+  SetFieldListProt(object, "pre_thresh_hi", FIELD_READWRITE);
+  SetFieldListDesc(object, "pre_thresh_hi", "upper presynaptic threshold");
+DirectSetElement(object->defaults, "pre_thresh_hi", "3.0");
+  SetFieldListProt(object, "pre_xconst", FIELD_HIDDEN);
+  SetFieldListDesc(object, "pre_xconst", "internal constant for presynaptic averaging");
+  SetFieldListProt(object, "pre_yconst1", FIELD_HIDDEN);
+  SetFieldListDesc(object, "pre_yconst1", "internal constant for presynaptic averaging");
+  SetFieldListProt(object, "pre_yconst2", FIELD_HIDDEN);
+  SetFieldListDesc(object, "pre_yconst2", "internal constant for presynaptic averaging");
+  SetFieldListProt(object, "pre_norm", FIELD_HIDDEN);
+  SetFieldListDesc(object, "pre_norm", "normalization factor for presynaptic averaging");
+  SetFieldListProt(object, "avg_Ca", FIELD_READONLY);
+  SetFieldListDesc(object, "avg_Ca", "averaged calcium");
+DirectSetElement(object->defaults, "avg_Ca", "0");
+  SetFieldListProt(object, "post_tau", FIELD_READWRITE);
+  SetFieldListDesc(object, "post_tau", "time constant of postsynaptic averaging");
+  SetFieldListProt(object, "post_const", FIELD_HIDDEN);
+  SetFieldListDesc(object, "post_const", "internal constant for postsynaptic averaging");
+  SetFieldListProt(object, "post_thresh_lo", FIELD_READWRITE);
+  SetFieldListDesc(object, "post_thresh_lo", "lower postsynaptic threshold");
+DirectSetElement(object->defaults, "post_thresh_lo", "-0.065");
+  SetFieldListProt(object, "post_thresh_hi", FIELD_READWRITE);
+  SetFieldListDesc(object, "post_thresh_hi", "upper postsynaptic threshold");
+DirectSetElement(object->defaults, "post_thresh_hi", "-0.065");
+  SetFieldListProt(object, "post_scale", FIELD_READWRITE);
+  SetFieldListDesc(object, "post_scale", "scaling factor for postsynaptic activities");
+DirectSetElement(object->defaults, "post_scale", "0.002");
+  SetFieldListProt(object, "weight_change_rate", FIELD_READWRITE);
+  SetFieldListDesc(object, "weight_change_rate", "rate of weight change");
+DirectSetElement(object->defaults, "weight_change_rate", "1.0");
+  SetFieldListProt(object, "min_weight", FIELD_READWRITE);
+  SetFieldListDesc(object, "min_weight", "minimum weight");
+DirectSetElement(object->defaults, "min_weight", "0.0");
+  SetFieldListProt(object, "max_weight", FIELD_READWRITE);
+  SetFieldListDesc(object, "max_weight", "maximum weight");
+DirectSetElement(object->defaults, "max_weight", "100.0");
+  SetFieldListProt(object, "change_weights", FIELD_READWRITE);
+  SetFieldListDesc(object, "change_weights", "flag: nonzero means weights can be changed");
+DirectSetElement(object->defaults, "change_weights", "1");
+  object->description = "Like Hebbsynchan, but weights are dynamically modified\naccording to a function of the pre- and postsynaptic\ncalcium.\n";
+  FieldListMakePermanent(object);
+  MsgListMakePermanent(object);
+
   /* Definition of object facsynchan */
   BZERO(&tobject,sizeof(GenesisObject));
   tobject.name = "facsynchan";

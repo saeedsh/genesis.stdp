@@ -1,5 +1,5 @@
 LIBRARY_buffer()
 {
-LibraryHeader("buffer","Tue Jan 21 11:24:23 2014 ");DATA_buffer();
+LibraryHeader("buffer","Thu Jan 23 12:24:46 2014 ");DATA_buffer();
 STARTUP_buffer();
 }

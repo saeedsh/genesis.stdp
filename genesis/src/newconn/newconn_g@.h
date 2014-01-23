@@ -15,6 +15,13 @@
 #define hebbsynchan_MOD 3
 #define hebbsynchan_WEIGHT_CHANGE_MOD 4
 #define hebbsynchan_SPIKE -1
+#define stdpsynchan_VOLTAGE 0
+#define stdpsynchan_ACTIVATION 1
+#define stdpsynchan_RAND_ACTIVATION 2
+#define stdpsynchan_MOD 3
+#define stdpsynchan_WEIGHT_CHANGE_MOD 4
+#define stdpsynchan_SPIKE -1
+#define stdpsynchan_CALCIUM 5
 #define facsynchan_VOLTAGE 0
 #define facsynchan_SPIKE -1
 #define spikegen_INPUT 0

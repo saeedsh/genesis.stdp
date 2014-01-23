@@ -144,6 +144,63 @@ object  hebbsynchan     HebbSynchan_type HebbSynchan segment channel synchannel 
                         "according to a function of the pre- and postsynaptic" \
                         "activations."  
 
+object  stdpsynchan     HebbSynchan_type StdpSynchan segment channel synchannel                    \
+        -author         "Mike Vanier 4/96 Caltech"                                                 \
+        -actions        CREATE INIT PROCESS RESET RECALC CHECK SAVE2 RESTORE2 EVENT                \
+                        ADDMSGIN DELETEMSGIN MSGINDELETED RESETBUFFER DELETE COPY SET SHOW         \
+        -messages       VOLTAGE         0       1 Vm                                               \
+                        ACTIVATION      1       1 activation                                       \
+                        RAND_ACTIVATION 2       2 probability amplitude                            \
+                        MOD             3       1 modulation                                       \
+                        WEIGHT_CHANGE_MOD  4    1 modulation                                       \
+                        SPIKE          -1       0                                                  \
+                        CALCIUM         5       1 Ca                                               \
+	-readonly       activation            "driving force for channel conductance"                    \
+	-readonly       Ik                    "channel current"                                          \
+	-readonly       Gk                    "conductance of channel"                                   \
+	-readwrite      Ek                    "reversal potential of channel"                            \
+        -hidden         X                     "internal variable for synaptic conductances"              \
+        -hidden         Y                     "internal variable for synaptic conductances"              \
+        -hidden         xconst1               "internal constant for synaptic conductances"              \
+        -hidden         xconst2               "internal constant for synaptic conductances"              \
+        -hidden         yconst1               "internal constant for synaptic conductances"              \
+        -hidden         yconst2               "internal constant for synaptic conductances"              \
+        -hidden         norm                  "normalization factor for psp amplitude"                   \
+        -readwrite      tau1                  "first time constant of channel activation"                \
+        -readwrite      tau2                  "second time constant of channel activation"               \
+        -readwrite      gmax                  "peak conductance"                                         \
+        -readwrite      frequency             "random activation frequency" 0.0                          \
+        -readonly       nsynapses             "Number of incoming spike messages"                        \
+	-hidden		synapse_size          "size of synapse in bytes"                                 \
+        -readonly       event_buffer_size     "size of event buffer" 0                                   \
+        -readonly       pending_events        "number of pending spike events in event buffer" 0         \
+        -hidden         FreeSynapticEvents    "free list of synaptic event nodes"                        \
+        -hidden         PendingSynapticEvents "list of pending synaptic events"                          \
+        -readwrite      nodes_per_synapse     "number of event nodes to allocate per synapse" 1.0        \
+        -hidden         list_alloced          "flag for whether the freelist has been allocated"   0     \
+        -hidden         allocednodes          "number of nodes that are the head of a malloced block" 0  \ 
+        -readwrite      synapse               "synapse buffer"                                           \
+	-readwrite      pre_tau1              "first time constant for presynaptic averaging"   0.010    \
+	-readwrite      pre_tau2              "second time constant for presynaptic averaging"  0.100    \
+	-readwrite      pre_thresh_lo         "lower presynaptic threshold" 3.0                          \ 
+        -readwrite      pre_thresh_hi         "upper presynaptic threshold" 3.0                          \ 
+        -hidden         pre_xconst            "internal constant for presynaptic averaging"              \
+	-hidden         pre_yconst1           "internal constant for presynaptic averaging"              \
+	-hidden         pre_yconst2           "internal constant for presynaptic averaging"              \
+	-hidden         pre_norm              "normalization factor for presynaptic averaging"           \
+	-readonly       avg_Ca                "averaged calcium" 0                             \
+	-readwrite      post_tau              "time constant of postsynaptic averaging"                  \
+	-hidden         post_const            "internal constant for postsynaptic averaging"             \
+	-readwrite      post_thresh_lo        "lower postsynaptic threshold" -0.065                      \
+	-readwrite      post_thresh_hi        "upper postsynaptic threshold" -0.065                      \
+	-readwrite      post_scale            "scaling factor for postsynaptic activities" 0.002         \
+	-readwrite      weight_change_rate    "rate of weight change" 1.0                                \
+	-readwrite      min_weight            "minimum weight" 0.0                                       \
+	-readwrite      max_weight            "maximum weight" 100.0                                     \
+	-readwrite      change_weights        "flag: nonzero means weights can be changed" 1             \
+	-description    "Like Hebbsynchan, but weights are dynamically modified"  \
+                        "according to a function of the pre- and postsynaptic" \
+                        "calcium."  
 /*
  * The facsynchan code is copyright as follows:
  * Copyright (c) 1999 Michael Christopher Vanier

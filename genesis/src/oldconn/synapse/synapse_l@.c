@@ -1,5 +1,5 @@
 LIBRARY_synapse()
 {
-LibraryHeader("synapse","Tue Jan 21 11:24:20 2014 ");DATA_synapse();
+LibraryHeader("synapse","Thu Jan 23 12:24:44 2014 ");DATA_synapse();
 STARTUP_synapse();
 }

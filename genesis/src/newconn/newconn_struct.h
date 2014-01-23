@@ -202,6 +202,7 @@ struct HebbSynchan_type
   float       min_weight;
   float       max_weight;
   short       change_weights;      /* flag: nonzero means weights can be changed */
+  double      avg_Ca;
 };
 
 

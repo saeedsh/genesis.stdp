@@ -161,6 +161,7 @@ OBJECTS = 	\
 		facsynchan.o		\
 		getsyn.o		\
 		hebbsynchan.o		\
+		stdpsynchan.o		\
 		misc_connfuncs.o	\
 		randomspike.o		\
 		spikegen.o		\
