@@ -35,7 +35,7 @@ call /out OUT_OPEN
 //call /out OUT_WRITE "Run #2"        // Write a header
 //setfield /cell1/soma inject 0.2e-9
 reset
-step .3 -t
+step 100 -t
 
 exit
 

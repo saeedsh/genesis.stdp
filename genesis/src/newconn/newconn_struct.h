@@ -75,7 +75,6 @@
 #define CONNECTION_MASK_ELLIPSE_SHAPE   1
 #define CONNECTION_MASK_ELLIPSOID_SHAPE 2
 
-
 struct extended_mask_type 
 { 
   short		type;
@@ -202,7 +201,13 @@ struct HebbSynchan_type
   float       min_weight;
   float       max_weight;
   short       change_weights;      /* flag: nonzero means weights can be changed */
+
   double      avg_Ca;
+
+  int      avg_Ca_ExtraMsgNumber;  // Number of messages that are coming to the Ca. This
+  	  	  	  	  	  	  	  	  //value would be usefult to calculate average over
+  	  	  	  	  	  	  	  	  //some input values
+  double      avg_Ca_ExtraMsgValue;  // Just for debug
 };
 
 

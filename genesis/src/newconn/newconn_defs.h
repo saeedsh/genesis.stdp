@@ -39,6 +39,16 @@
 #define WEIGHT_CHANGE_MOD  4
 #define CALCIUM            5
 
+#define AVG_CALCIUM_MAX_SIZE 8
+#define AVG_CALCIUM_1      6
+#define AVG_CALCIUM_2      7
+#define AVG_CALCIUM_3      8
+#define AVG_CALCIUM_4      9
+#define AVG_CALCIUM_5      10
+#define AVG_CALCIUM_6      11
+#define AVG_CALCIUM_7      12
+#define AVG_CALCIUM_8      13
+
 /* extra action for synchan2 */
 #define RESETBUFFER 1001
 

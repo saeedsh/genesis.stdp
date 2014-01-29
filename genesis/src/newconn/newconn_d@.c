@@ -409,6 +409,10 @@ __BZ;info.name="HebbSynchan_type.change_weights";info.offset=(caddr_t)(&(var.cha
 if (strlen(fields) > 2500) { Error(); printf("Field size too long for object HebbSynchan_type, field change_weights\n**See sys/code_sym.c and increase the value of MAX_FIELDS_SIZE\n\n"); }
 __BZ;info.name="HebbSynchan_type.avg_Ca";info.offset=(caddr_t)(&(var.avg_Ca))-(caddr_t)(&var);		info.type="double";info.type_size=sizeof(double);InfoHashPut(&info);strcat(fields,"avg_Ca");strcat(fields,"\n");
 if (strlen(fields) > 2500) { Error(); printf("Field size too long for object HebbSynchan_type, field avg_Ca\n**See sys/code_sym.c and increase the value of MAX_FIELDS_SIZE\n\n"); }
+__BZ;info.name="HebbSynchan_type.avg_Ca_ExtraMsgNumber";info.offset=(caddr_t)(&(var.avg_Ca_ExtraMsgNumber))-(caddr_t)(&var);		info.type="int";info.type_size=sizeof(int);InfoHashPut(&info);strcat(fields,"avg_Ca_ExtraMsgNumber");strcat(fields,"\n");
+if (strlen(fields) > 2500) { Error(); printf("Field size too long for object HebbSynchan_type, field avg_Ca_ExtraMsgNumber\n**See sys/code_sym.c and increase the value of MAX_FIELDS_SIZE\n\n"); }
+__BZ;info.name="HebbSynchan_type.avg_Ca_ExtraMsgValue";info.offset=(caddr_t)(&(var.avg_Ca_ExtraMsgValue))-(caddr_t)(&var);		info.type="double";info.type_size=sizeof(double);InfoHashPut(&info);strcat(fields,"avg_Ca_ExtraMsgValue");strcat(fields,"\n");
+if (strlen(fields) > 2500) { Error(); printf("Field size too long for object HebbSynchan_type, field avg_Ca_ExtraMsgValue\n**See sys/code_sym.c and increase the value of MAX_FIELDS_SIZE\n\n"); }
 FieldHashPut("HebbSynchan_type",fields);
 }
 void INFO_Fac_Synapse_type(){

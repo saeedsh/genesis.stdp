@@ -34,7 +34,7 @@ sed 's/%@/@@/; s/@%/@@/; s/%g$/@g/; /@g$/s/[\\&%]/\\&/g;
  s/@@/%@/; s/@@/@%/; s/@g$/%g/' > conftest.subs <<\CEOF
 /^[ 	]*VPATH[ 	]*=[^:]*$/d
 
-s%@CFLAGS@%-O0 -g -D__NO_MATH_INLINES -DLONGWORDS -Dnetcdf -DFMT1 -DINCSPRNG%g
+s%@CFLAGS@%-O3 -D__NO_MATH_INLINES -DLONGWORDS -g -Dnetcdf -DFMT1 -DINCSPRNG%g
 s%@CPPFLAGS@%-DNDEBUG%g
 s%@CXXFLAGS@%%g
 s%@DEFS@%-DHAVE_CONFIG_H%g
