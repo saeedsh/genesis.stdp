@@ -424,10 +424,6 @@ DirectSetElement(object->defaults, "change_weights", "1");
   MsgListAdd(object, "SPIKE", stdpsynchan_SPIKE, slotnames, 0);
   slotnames[0] = "Ca";
   MsgListAdd(object, "CALCIUM", stdpsynchan_CALCIUM, slotnames, 1);
-  MsgListAdd(object, "AVG_CALCIUM_1", stdpsynchan_AVG_CALCIUM_1, slotnames, 1);
-  MsgListAdd(object, "AVG_CALCIUM_2", stdpsynchan_AVG_CALCIUM_2, slotnames, 1);
-  MsgListAdd(object, "AVG_CALCIUM_3", stdpsynchan_AVG_CALCIUM_3, slotnames, 1);
-
   SetFieldListProt(object, "activation", FIELD_READONLY);
   SetFieldListDesc(object, "activation", "driving force for channel conductance");
   SetFieldListProt(object, "Ik", FIELD_READONLY);

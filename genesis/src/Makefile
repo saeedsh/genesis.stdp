@@ -850,7 +850,7 @@ CPP=cpp -P
 ## For 32-bit architectures
 # CFLAGS=-O2 -D__NO_MATH_INLINES
 ## For 64-bit architectures
-CFLAGS=-O3 -D__NO_MATH_INLINES -DLONGWORDS #-g
+CFLAGS=-O0 -D__NO_MATH_INLINES -DLONGWORDS -g
 
 LD=ld
 

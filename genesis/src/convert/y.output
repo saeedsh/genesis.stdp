@@ -409,7 +409,7 @@ $@21 (123)
     on left: 120, on right: 121
 
 
-state 0
+State 0
 
     0 $accept: . script $end
 
@@ -419,14 +419,14 @@ state 0
     statement_list  go to state 2
 
 
-state 1
+State 1
 
     0 $accept: script . $end
 
     $end  shift, and go to state 3
 
 
-state 2
+State 2
 
     1 script: statement_list .
     3 statement_list: statement_list . statement stmnt_terminator
@@ -474,42 +474,42 @@ state 2
     null_stmnt        go to state 40
 
 
-state 3
+State 3
 
     0 $accept: script $end .
 
     $default  accept
 
 
-state 4
+State 4
 
    23 while_stmnt: WHILE . '(' expr ')' $@1 statement_list END
 
     '('  shift, and go to state 41
 
 
-state 5
+State 5
 
    30 if_stmnt: IF . '(' expr ')' $@5 statement_list else_clause END
 
     '('  shift, and go to state 42
 
 
-state 6
+State 6
 
    25 for_stmnt: FOR . '(' assign_stmnt ';' expr ';' assign_stmnt ')' $@2 statement_list END
 
     '('  shift, and go to state 43
 
 
-state 7
+State 7
 
    28 foreach_stmnt: FOREACH . VARREF '(' $@3 ws arg_list ws $@4 ')' statement_list END
 
     VARREF  shift, and go to state 44
 
 
-state 8
+State 8
 
    36 include_hdr: INCLUDE . $@7 ws LITERAL
 
@@ -518,42 +518,42 @@ state 8
     $@7  go to state 45
 
 
-state 9
+State 9
 
    21 endscript_marker: ENDSCRIPT .
 
     $default  reduce using rule 21 (endscript_marker)
 
 
-state 10
+State 10
 
    93 break_stmnt: BREAK .
 
     $default  reduce using rule 93 (break_stmnt)
 
 
-state 11
+State 11
 
    82 decl_type: INT .
 
     $default  reduce using rule 82 (decl_type)
 
 
-state 12
+State 12
 
    83 decl_type: FLOAT .
 
     $default  reduce using rule 83 (decl_type)
 
 
-state 13
+State 13
 
    84 decl_type: STR .
 
     $default  reduce using rule 84 (decl_type)
 
 
-state 14
+State 14
 
    94 return_stmnt: RETURN . expr
    95             | RETURN .
@@ -576,7 +576,7 @@ state 14
     expr  go to state 58
 
 
-state 15
+State 15
 
    72 func_hdr: FUNCTION . IDENT
    73         | FUNCTION . FUNCREF
@@ -585,7 +585,7 @@ state 15
     FUNCREF  shift, and go to state 60
 
 
-state 16
+State 16
 
    42 cmd_name: IDENT . $@8 opt_node
 
@@ -594,21 +594,21 @@ state 16
     $@8  go to state 61
 
 
-state 17
+State 17
 
    34 assign_stmnt: VARREF . '=' expr
 
     '='  shift, and go to state 62
 
 
-state 18
+State 18
 
    46 funcref: FUNCREF .
 
     $default  reduce using rule 46 (funcref)
 
 
-state 19
+State 19
 
    70 ext_func: EXTERN . IDENT
    71         | EXTERN . FUNCREF
@@ -617,7 +617,7 @@ state 19
     FUNCREF  shift, and go to state 64
 
 
-state 20
+State 20
 
     3 statement_list: statement_list statement . stmnt_terminator
 
@@ -627,49 +627,49 @@ state 20
     stmnt_terminator  go to state 67
 
 
-state 21
+State 21
 
    12 statement: endscript_marker .
 
     $default  reduce using rule 12 (statement)
 
 
-state 22
+State 22
 
     6 statement: while_stmnt .
 
     $default  reduce using rule 6 (statement)
 
 
-state 23
+State 23
 
     7 statement: for_stmnt .
 
     $default  reduce using rule 7 (statement)
 
 
-state 24
+State 24
 
     8 statement: foreach_stmnt .
 
     $default  reduce using rule 8 (statement)
 
 
-state 25
+State 25
 
     9 statement: if_stmnt .
 
     $default  reduce using rule 9 (statement)
 
 
-state 26
+State 26
 
    10 statement: assign_stmnt .
 
     $default  reduce using rule 10 (statement)
 
 
-state 27
+State 27
 
    37 include_stmnt: include_hdr . WHITESPACE arg_list ws
    38              | include_hdr . ws
@@ -681,14 +681,14 @@ state 27
     ws  go to state 69
 
 
-state 28
+State 28
 
    11 statement: include_stmnt .
 
     $default  reduce using rule 11 (statement)
 
 
-state 29
+State 29
 
    44 cmd_stmnt: cmd_name . $@9 opt_arg_list ws
    45          | cmd_name . '(' optwslist func_call_list optwslist ')'
@@ -700,14 +700,14 @@ state 29
     $@9  go to state 71
 
 
-state 30
+State 30
 
    13 statement: cmd_stmnt .
 
     $default  reduce using rule 13 (statement)
 
 
-state 31
+State 31
 
    47 func_call: funcref . '(' optwslist func_call_list optwslist ')'
    49          | funcref . $@10 opt_arg_list ws
@@ -719,21 +719,21 @@ state 31
     $@10  go to state 73
 
 
-state 32
+State 32
 
    14 statement: func_call .
 
     $default  reduce using rule 14 (statement)
 
 
-state 33
+State 33
 
    16 statement: ext_func .
 
     $default  reduce using rule 16 (statement)
 
 
-state 34
+State 34
 
    76 func_def: func_hdr . $@13 func_args $@14 statement_list END
 
@@ -742,14 +742,14 @@ state 34
     $@13  go to state 74
 
 
-state 35
+State 35
 
    15 statement: func_def .
 
     $default  reduce using rule 15 (statement)
 
 
-state 36
+State 36
 
    85 decl_stmnt: decl_type . decl_list
 
@@ -759,35 +759,35 @@ state 36
     decl_ident  go to state 77
 
 
-state 37
+State 37
 
    17 statement: decl_stmnt .
 
     $default  reduce using rule 17 (statement)
 
 
-state 38
+State 38
 
    18 statement: break_stmnt .
 
     $default  reduce using rule 18 (statement)
 
 
-state 39
+State 39
 
    19 statement: return_stmnt .
 
     $default  reduce using rule 19 (statement)
 
 
-state 40
+State 40
 
    20 statement: null_stmnt .
 
     $default  reduce using rule 20 (statement)
 
 
-state 41
+State 41
 
    23 while_stmnt: WHILE '(' . expr ')' $@1 statement_list END
 
@@ -807,7 +807,7 @@ state 41
     expr  go to state 78
 
 
-state 42
+State 42
 
    30 if_stmnt: IF '(' . expr ')' $@5 statement_list else_clause END
 
@@ -827,7 +827,7 @@ state 42
     expr  go to state 79
 
 
-state 43
+State 43
 
    25 for_stmnt: FOR '(' . assign_stmnt ';' expr ';' assign_stmnt ')' $@2 statement_list END
 
@@ -836,14 +836,14 @@ state 43
     assign_stmnt  go to state 80
 
 
-state 44
+State 44
 
    28 foreach_stmnt: FOREACH VARREF . '(' $@3 ws arg_list ws $@4 ')' statement_list END
 
     '('  shift, and go to state 81
 
 
-state 45
+State 45
 
    36 include_hdr: INCLUDE $@7 . ws LITERAL
 
@@ -854,7 +854,7 @@ state 45
     ws  go to state 83
 
 
-state 46
+State 46
 
   109 expr: '!' . expr
 
@@ -874,7 +874,7 @@ state 46
     expr  go to state 84
 
 
-state 47
+State 47
 
   106 expr: '-' . expr
 
@@ -894,7 +894,7 @@ state 47
     expr  go to state 85
 
 
-state 48
+State 48
 
   100 expr: '~' . expr
 
@@ -914,35 +914,35 @@ state 48
     expr  go to state 86
 
 
-state 49
+State 49
 
   126 expr: INTCONST .
 
     $default  reduce using rule 126 (expr)
 
 
-state 50
+State 50
 
   128 expr: DOLLARARG .
 
     $default  reduce using rule 128 (expr)
 
 
-state 51
+State 51
 
   125 expr: FLOATCONST .
 
     $default  reduce using rule 125 (expr)
 
 
-state 52
+State 52
 
   127 expr: STRCONST .
 
     $default  reduce using rule 127 (expr)
 
 
-state 53
+State 53
 
   118 expr: IDENT . '(' $@18 optwslist func_call_list optwslist $@19 ')'
   124     | IDENT .
@@ -952,14 +952,14 @@ state 53
     $default  reduce using rule 124 (expr)
 
 
-state 54
+State 54
 
   122 expr: VARREF .
 
     $default  reduce using rule 122 (expr)
 
 
-state 55
+State 55
 
   121 expr: FUNCREF . '(' $@20 optwslist func_call_list optwslist $@21 ')'
   123     | FUNCREF .
@@ -969,7 +969,7 @@ state 55
     $default  reduce using rule 123 (expr)
 
 
-state 56
+State 56
 
   130 expr: '(' . expr ')'
 
@@ -989,7 +989,7 @@ state 56
     expr  go to state 89
 
 
-state 57
+State 57
 
   129 expr: '{' . expr '}'
 
@@ -1009,7 +1009,7 @@ state 57
     expr  go to state 90
 
 
-state 58
+State 58
 
    94 return_stmnt: RETURN expr .
    97 expr: expr . '|' expr
@@ -1049,21 +1049,21 @@ state 58
     $default  reduce using rule 94 (return_stmnt)
 
 
-state 59
+State 59
 
    72 func_hdr: FUNCTION IDENT .
 
     $default  reduce using rule 72 (func_hdr)
 
 
-state 60
+State 60
 
    73 func_hdr: FUNCTION FUNCREF .
 
     $default  reduce using rule 73 (func_hdr)
 
 
-state 61
+State 61
 
    42 cmd_name: IDENT $@8 . opt_node
 
@@ -1074,7 +1074,7 @@ state 61
     opt_node  go to state 108
 
 
-state 62
+State 62
 
    34 assign_stmnt: VARREF '=' . expr
 
@@ -1094,42 +1094,42 @@ state 62
     expr  go to state 109
 
 
-state 63
+State 63
 
    70 ext_func: EXTERN IDENT .
 
     $default  reduce using rule 70 (ext_func)
 
 
-state 64
+State 64
 
    71 ext_func: EXTERN FUNCREF .
 
     $default  reduce using rule 71 (ext_func)
 
 
-state 65
+State 65
 
     4 stmnt_terminator: '\n' .
 
     $default  reduce using rule 4 (stmnt_terminator)
 
 
-state 66
+State 66
 
     5 stmnt_terminator: ';' .
 
     $default  reduce using rule 5 (stmnt_terminator)
 
 
-state 67
+State 67
 
     3 statement_list: statement_list statement stmnt_terminator .
 
     $default  reduce using rule 3 (statement_list)
 
 
-state 68
+State 68
 
    37 include_stmnt: include_hdr WHITESPACE . arg_list ws
    61 ws: WHITESPACE .
@@ -1146,14 +1146,14 @@ state 68
     arg_component       go to state 116
 
 
-state 69
+State 69
 
    38 include_stmnt: include_hdr ws .
 
     $default  reduce using rule 38 (include_stmnt)
 
 
-state 70
+State 70
 
    45 cmd_stmnt: cmd_name '(' . optwslist func_call_list optwslist ')'
 
@@ -1165,7 +1165,7 @@ state 70
     wslist     go to state 119
 
 
-state 71
+State 71
 
    44 cmd_stmnt: cmd_name $@9 . opt_arg_list ws
 
@@ -1174,7 +1174,7 @@ state 71
     opt_arg_list  go to state 120
 
 
-state 72
+State 72
 
    47 func_call: funcref '(' . optwslist func_call_list optwslist ')'
 
@@ -1186,7 +1186,7 @@ state 72
     wslist     go to state 119
 
 
-state 73
+State 73
 
    49 func_call: funcref $@10 . opt_arg_list ws
 
@@ -1195,7 +1195,7 @@ state 73
     opt_arg_list  go to state 122
 
 
-state 74
+State 74
 
    76 func_def: func_hdr $@13 . func_args $@14 statement_list END
 
@@ -1206,7 +1206,7 @@ state 74
     func_args  go to state 124
 
 
-state 75
+State 75
 
    90 decl_ident: IDENT . $@17 init
 
@@ -1215,7 +1215,7 @@ state 75
     $@17  go to state 125
 
 
-state 76
+State 76
 
    85 decl_stmnt: decl_type decl_list .
    88 decl_list: decl_list . ',' $@16 decl_ident
@@ -1225,14 +1225,14 @@ state 76
     $default  reduce using rule 85 (decl_stmnt)
 
 
-state 77
+State 77
 
    86 decl_list: decl_ident .
 
     $default  reduce using rule 86 (decl_list)
 
 
-state 78
+State 78
 
    23 while_stmnt: WHILE '(' expr . ')' $@1 statement_list END
    97 expr: expr . '|' expr
@@ -1271,7 +1271,7 @@ state 78
     ')'  shift, and go to state 127
 
 
-state 79
+State 79
 
    30 if_stmnt: IF '(' expr . ')' $@5 statement_list else_clause END
    97 expr: expr . '|' expr
@@ -1310,14 +1310,14 @@ state 79
     ')'  shift, and go to state 128
 
 
-state 80
+State 80
 
    25 for_stmnt: FOR '(' assign_stmnt . ';' expr ';' assign_stmnt ')' $@2 statement_list END
 
     ';'  shift, and go to state 129
 
 
-state 81
+State 81
 
    28 foreach_stmnt: FOREACH VARREF '(' . $@3 ws arg_list ws $@4 ')' statement_list END
 
@@ -1326,21 +1326,21 @@ state 81
     $@3  go to state 130
 
 
-state 82
+State 82
 
    61 ws: WHITESPACE .
 
     $default  reduce using rule 61 (ws)
 
 
-state 83
+State 83
 
    36 include_hdr: INCLUDE $@7 ws . LITERAL
 
     LITERAL  shift, and go to state 131
 
 
-state 84
+State 84
 
    97 expr: expr . '|' expr
    98     | expr . '&' expr
@@ -1374,7 +1374,7 @@ state 84
     $default  reduce using rule 109 (expr)
 
 
-state 85
+State 85
 
    97 expr: expr . '|' expr
    98     | expr . '&' expr
@@ -1397,7 +1397,7 @@ state 85
     $default  reduce using rule 106 (expr)
 
 
-state 86
+State 86
 
    97 expr: expr . '|' expr
    98     | expr . '&' expr
@@ -1420,7 +1420,7 @@ state 86
     $default  reduce using rule 100 (expr)
 
 
-state 87
+State 87
 
   118 expr: IDENT '(' . $@18 optwslist func_call_list optwslist $@19 ')'
 
@@ -1429,7 +1429,7 @@ state 87
     $@18  go to state 132
 
 
-state 88
+State 88
 
   121 expr: FUNCREF '(' . $@20 optwslist func_call_list optwslist $@21 ')'
 
@@ -1438,7 +1438,7 @@ state 88
     $@20  go to state 133
 
 
-state 89
+State 89
 
    97 expr: expr . '|' expr
    98     | expr . '&' expr
@@ -1477,7 +1477,7 @@ state 89
     ')'  shift, and go to state 134
 
 
-state 90
+State 90
 
    97 expr: expr . '|' expr
    98     | expr . '&' expr
@@ -1516,7 +1516,7 @@ state 90
     '}'  shift, and go to state 135
 
 
-state 91
+State 91
 
   115 expr: expr NE . expr
 
@@ -1536,7 +1536,7 @@ state 91
     expr  go to state 136
 
 
-state 92
+State 92
 
   114 expr: expr EQ . expr
 
@@ -1556,7 +1556,7 @@ state 92
     expr  go to state 137
 
 
-state 93
+State 93
 
   113 expr: expr GE . expr
 
@@ -1576,7 +1576,7 @@ state 93
     expr  go to state 138
 
 
-state 94
+State 94
 
   112 expr: expr GT . expr
 
@@ -1596,7 +1596,7 @@ state 94
     expr  go to state 139
 
 
-state 95
+State 95
 
   111 expr: expr LE . expr
 
@@ -1616,7 +1616,7 @@ state 95
     expr  go to state 140
 
 
-state 96
+State 96
 
   110 expr: expr LT . expr
 
@@ -1636,7 +1636,7 @@ state 96
     expr  go to state 141
 
 
-state 97
+State 97
 
   108 expr: expr AND . expr
 
@@ -1656,7 +1656,7 @@ state 97
     expr  go to state 142
 
 
-state 98
+State 98
 
   107 expr: expr OR . expr
 
@@ -1676,7 +1676,7 @@ state 98
     expr  go to state 143
 
 
-state 99
+State 99
 
   101 expr: expr '+' . expr
 
@@ -1696,7 +1696,7 @@ state 99
     expr  go to state 144
 
 
-state 100
+State 100
 
   102 expr: expr '-' . expr
 
@@ -1716,7 +1716,7 @@ state 100
     expr  go to state 145
 
 
-state 101
+State 101
 
    98 expr: expr '&' . expr
 
@@ -1736,7 +1736,7 @@ state 101
     expr  go to state 146
 
 
-state 102
+State 102
 
    97 expr: expr '|' . expr
 
@@ -1756,7 +1756,7 @@ state 102
     expr  go to state 147
 
 
-state 103
+State 103
 
    99 expr: expr '^' . expr
 
@@ -1776,7 +1776,7 @@ state 103
     expr  go to state 148
 
 
-state 104
+State 104
 
   103 expr: expr '*' . expr
 
@@ -1796,7 +1796,7 @@ state 104
     expr  go to state 149
 
 
-state 105
+State 105
 
   104 expr: expr '/' . expr
 
@@ -1816,7 +1816,7 @@ state 105
     expr  go to state 150
 
 
-state 106
+State 106
 
   105 expr: expr '%' . expr
 
@@ -1836,21 +1836,21 @@ state 106
     expr  go to state 151
 
 
-state 107
+State 107
 
    40 opt_node: LITERAL .
 
     $default  reduce using rule 40 (opt_node)
 
 
-state 108
+State 108
 
    42 cmd_name: IDENT $@8 opt_node .
 
     $default  reduce using rule 42 (cmd_name)
 
 
-state 109
+State 109
 
    34 assign_stmnt: VARREF '=' expr .
    97 expr: expr . '|' expr
@@ -1890,28 +1890,28 @@ state 109
     $default  reduce using rule 34 (assign_stmnt)
 
 
-state 110
+State 110
 
    66 arg_component: DOLLARARG .
 
     $default  reduce using rule 66 (arg_component)
 
 
-state 111
+State 111
 
    65 arg_component: STRCONST .
 
     $default  reduce using rule 65 (arg_component)
 
 
-state 112
+State 112
 
    64 arg_component: LITERAL .
 
     $default  reduce using rule 64 (arg_component)
 
 
-state 113
+State 113
 
    69 arg_component: '{' . $@11 expr $@12 '}'
 
@@ -1920,7 +1920,7 @@ state 113
     $@11  go to state 152
 
 
-state 114
+State 114
 
    37 include_stmnt: include_hdr WHITESPACE arg_list . ws
    53 arg_list: arg_list . wslist arg_component_list
@@ -1933,7 +1933,7 @@ state 114
     ws      go to state 155
 
 
-state 115
+State 115
 
    52 arg_list: arg_component_list .
    63 arg_component_list: arg_component_list . arg_component
@@ -1948,21 +1948,21 @@ state 115
     arg_component  go to state 156
 
 
-state 116
+State 116
 
    62 arg_component_list: arg_component .
 
     $default  reduce using rule 62 (arg_component_list)
 
 
-state 117
+State 117
 
    56 wslist: WHITESPACE .
 
     $default  reduce using rule 56 (wslist)
 
 
-state 118
+State 118
 
    45 cmd_stmnt: cmd_name '(' optwslist . func_call_list optwslist ')'
 
@@ -1976,7 +1976,7 @@ state 118
     arg_component       go to state 116
 
 
-state 119
+State 119
 
    55 optwslist: wslist .
    57 wslist: wslist . WHITESPACE
@@ -1986,7 +1986,7 @@ state 119
     $default  reduce using rule 55 (optwslist)
 
 
-state 120
+State 120
 
    44 cmd_stmnt: cmd_name $@9 opt_arg_list . ws
    51 opt_arg_list: opt_arg_list . wslist arg_component_list
@@ -1999,7 +1999,7 @@ state 120
     ws      go to state 161
 
 
-state 121
+State 121
 
    47 func_call: funcref '(' optwslist . func_call_list optwslist ')'
 
@@ -2013,7 +2013,7 @@ state 121
     arg_component       go to state 116
 
 
-state 122
+State 122
 
    49 func_call: funcref $@10 opt_arg_list . ws
    51 opt_arg_list: opt_arg_list . wslist arg_component_list
@@ -2026,7 +2026,7 @@ state 122
     ws      go to state 163
 
 
-state 123
+State 123
 
    79 func_args: '(' . $@15 func_arg_list ')'
 
@@ -2035,7 +2035,7 @@ state 123
     $@15  go to state 164
 
 
-state 124
+State 124
 
    76 func_def: func_hdr $@13 func_args . $@14 statement_list END
 
@@ -2044,7 +2044,7 @@ state 124
     $@14  go to state 165
 
 
-state 125
+State 125
 
    90 decl_ident: IDENT $@17 . init
 
@@ -2055,7 +2055,7 @@ state 125
     init  go to state 167
 
 
-state 126
+State 126
 
    88 decl_list: decl_list ',' . $@16 decl_ident
 
@@ -2064,7 +2064,7 @@ state 126
     $@16  go to state 168
 
 
-state 127
+State 127
 
    23 while_stmnt: WHILE '(' expr ')' . $@1 statement_list END
 
@@ -2073,7 +2073,7 @@ state 127
     $@1  go to state 169
 
 
-state 128
+State 128
 
    30 if_stmnt: IF '(' expr ')' . $@5 statement_list else_clause END
 
@@ -2082,7 +2082,7 @@ state 128
     $@5  go to state 170
 
 
-state 129
+State 129
 
    25 for_stmnt: FOR '(' assign_stmnt ';' . expr ';' assign_stmnt ')' $@2 statement_list END
 
@@ -2102,7 +2102,7 @@ state 129
     expr  go to state 171
 
 
-state 130
+State 130
 
    28 foreach_stmnt: FOREACH VARREF '(' $@3 . ws arg_list ws $@4 ')' statement_list END
 
@@ -2113,14 +2113,14 @@ state 130
     ws  go to state 172
 
 
-state 131
+State 131
 
    36 include_hdr: INCLUDE $@7 ws LITERAL .
 
     $default  reduce using rule 36 (include_hdr)
 
 
-state 132
+State 132
 
   118 expr: IDENT '(' $@18 . optwslist func_call_list optwslist $@19 ')'
 
@@ -2132,7 +2132,7 @@ state 132
     wslist     go to state 119
 
 
-state 133
+State 133
 
   121 expr: FUNCREF '(' $@20 . optwslist func_call_list optwslist $@21 ')'
 
@@ -2144,21 +2144,21 @@ state 133
     wslist     go to state 119
 
 
-state 134
+State 134
 
   130 expr: '(' expr ')' .
 
     $default  reduce using rule 130 (expr)
 
 
-state 135
+State 135
 
   129 expr: '{' expr '}' .
 
     $default  reduce using rule 129 (expr)
 
 
-state 136
+State 136
 
    97 expr: expr . '|' expr
    98     | expr . '&' expr
@@ -2199,7 +2199,7 @@ state 136
     $default  reduce using rule 115 (expr)
 
 
-state 137
+State 137
 
    97 expr: expr . '|' expr
    98     | expr . '&' expr
@@ -2240,7 +2240,7 @@ state 137
     $default  reduce using rule 114 (expr)
 
 
-state 138
+State 138
 
    97 expr: expr . '|' expr
    98     | expr . '&' expr
@@ -2281,7 +2281,7 @@ state 138
     $default  reduce using rule 113 (expr)
 
 
-state 139
+State 139
 
    97 expr: expr . '|' expr
    98     | expr . '&' expr
@@ -2322,7 +2322,7 @@ state 139
     $default  reduce using rule 112 (expr)
 
 
-state 140
+State 140
 
    97 expr: expr . '|' expr
    98     | expr . '&' expr
@@ -2363,7 +2363,7 @@ state 140
     $default  reduce using rule 111 (expr)
 
 
-state 141
+State 141
 
    97 expr: expr . '|' expr
    98     | expr . '&' expr
@@ -2404,7 +2404,7 @@ state 141
     $default  reduce using rule 110 (expr)
 
 
-state 142
+State 142
 
    97 expr: expr . '|' expr
    98     | expr . '&' expr
@@ -2436,7 +2436,7 @@ state 142
     $default  reduce using rule 108 (expr)
 
 
-state 143
+State 143
 
    97 expr: expr . '|' expr
    98     | expr . '&' expr
@@ -2468,7 +2468,7 @@ state 143
     $default  reduce using rule 107 (expr)
 
 
-state 144
+State 144
 
    97 expr: expr . '|' expr
    98     | expr . '&' expr
@@ -2495,7 +2495,7 @@ state 144
     $default  reduce using rule 101 (expr)
 
 
-state 145
+State 145
 
    97 expr: expr . '|' expr
    98     | expr . '&' expr
@@ -2522,7 +2522,7 @@ state 145
     $default  reduce using rule 102 (expr)
 
 
-state 146
+State 146
 
    97 expr: expr . '|' expr
    98     | expr . '&' expr
@@ -2549,7 +2549,7 @@ state 146
     $default  reduce using rule 98 (expr)
 
 
-state 147
+State 147
 
    97 expr: expr . '|' expr
    97     | expr '|' expr .
@@ -2576,7 +2576,7 @@ state 147
     $default  reduce using rule 97 (expr)
 
 
-state 148
+State 148
 
    97 expr: expr . '|' expr
    98     | expr . '&' expr
@@ -2603,7 +2603,7 @@ state 148
     $default  reduce using rule 99 (expr)
 
 
-state 149
+State 149
 
    97 expr: expr . '|' expr
    98     | expr . '&' expr
@@ -2626,7 +2626,7 @@ state 149
     $default  reduce using rule 103 (expr)
 
 
-state 150
+State 150
 
    97 expr: expr . '|' expr
    98     | expr . '&' expr
@@ -2649,7 +2649,7 @@ state 150
     $default  reduce using rule 104 (expr)
 
 
-state 151
+State 151
 
    97 expr: expr . '|' expr
    98     | expr . '&' expr
@@ -2672,7 +2672,7 @@ state 151
     $default  reduce using rule 105 (expr)
 
 
-state 152
+State 152
 
    69 arg_component: '{' $@11 . expr $@12 '}'
 
@@ -2692,7 +2692,7 @@ state 152
     expr  go to state 175
 
 
-state 153
+State 153
 
    56 wslist: WHITESPACE .
    61 ws: WHITESPACE .
@@ -2703,7 +2703,7 @@ state 153
     $default  reduce using rule 56 (wslist)
 
 
-state 154
+State 154
 
    53 arg_list: arg_list wslist . arg_component_list
    57 wslist: wslist . WHITESPACE
@@ -2718,21 +2718,21 @@ state 154
     arg_component       go to state 116
 
 
-state 155
+State 155
 
    37 include_stmnt: include_hdr WHITESPACE arg_list ws .
 
     $default  reduce using rule 37 (include_stmnt)
 
 
-state 156
+State 156
 
    63 arg_component_list: arg_component_list arg_component .
 
     $default  reduce using rule 63 (arg_component_list)
 
 
-state 157
+State 157
 
    45 cmd_stmnt: cmd_name '(' optwslist func_call_list . optwslist ')'
    59 func_call_list: func_call_list . optwslist ',' optwslist arg_component_list
@@ -2745,7 +2745,7 @@ state 157
     wslist     go to state 119
 
 
-state 158
+State 158
 
    58 func_call_list: arg_component_list .
    63 arg_component_list: arg_component_list . arg_component
@@ -2760,14 +2760,14 @@ state 158
     arg_component  go to state 156
 
 
-state 159
+State 159
 
    57 wslist: wslist WHITESPACE .
 
     $default  reduce using rule 57 (wslist)
 
 
-state 160
+State 160
 
    51 opt_arg_list: opt_arg_list wslist . arg_component_list
    57 wslist: wslist . WHITESPACE
@@ -2782,14 +2782,14 @@ state 160
     arg_component       go to state 116
 
 
-state 161
+State 161
 
    44 cmd_stmnt: cmd_name $@9 opt_arg_list ws .
 
     $default  reduce using rule 44 (cmd_stmnt)
 
 
-state 162
+State 162
 
    47 func_call: funcref '(' optwslist func_call_list . optwslist ')'
    59 func_call_list: func_call_list . optwslist ',' optwslist arg_component_list
@@ -2802,14 +2802,14 @@ state 162
     wslist     go to state 119
 
 
-state 163
+State 163
 
    49 func_call: funcref $@10 opt_arg_list ws .
 
     $default  reduce using rule 49 (func_call)
 
 
-state 164
+State 164
 
    79 func_args: '(' $@15 . func_arg_list ')'
 
@@ -2818,7 +2818,7 @@ state 164
     func_arg_list  go to state 181
 
 
-state 165
+State 165
 
    76 func_def: func_hdr $@13 func_args $@14 . statement_list END
 
@@ -2827,7 +2827,7 @@ state 165
     statement_list  go to state 182
 
 
-state 166
+State 166
 
    92 init: '=' . expr
 
@@ -2847,14 +2847,14 @@ state 166
     expr  go to state 183
 
 
-state 167
+State 167
 
    90 decl_ident: IDENT $@17 init .
 
     $default  reduce using rule 90 (decl_ident)
 
 
-state 168
+State 168
 
    88 decl_list: decl_list ',' $@16 . decl_ident
 
@@ -2863,7 +2863,7 @@ state 168
     decl_ident  go to state 184
 
 
-state 169
+State 169
 
    23 while_stmnt: WHILE '(' expr ')' $@1 . statement_list END
 
@@ -2872,7 +2872,7 @@ state 169
     statement_list  go to state 185
 
 
-state 170
+State 170
 
    30 if_stmnt: IF '(' expr ')' $@5 . statement_list else_clause END
 
@@ -2881,7 +2881,7 @@ state 170
     statement_list  go to state 186
 
 
-state 171
+State 171
 
    25 for_stmnt: FOR '(' assign_stmnt ';' expr . ';' assign_stmnt ')' $@2 statement_list END
    97 expr: expr . '|' expr
@@ -2920,7 +2920,7 @@ state 171
     ';'  shift, and go to state 187
 
 
-state 172
+State 172
 
    28 foreach_stmnt: FOREACH VARREF '(' $@3 ws . arg_list ws $@4 ')' statement_list END
 
@@ -2934,7 +2934,7 @@ state 172
     arg_component       go to state 116
 
 
-state 173
+State 173
 
   118 expr: IDENT '(' $@18 optwslist . func_call_list optwslist $@19 ')'
 
@@ -2948,7 +2948,7 @@ state 173
     arg_component       go to state 116
 
 
-state 174
+State 174
 
   121 expr: FUNCREF '(' $@20 optwslist . func_call_list optwslist $@21 ')'
 
@@ -2962,7 +2962,7 @@ state 174
     arg_component       go to state 116
 
 
-state 175
+State 175
 
    69 arg_component: '{' $@11 expr . $@12 '}'
    97 expr: expr . '|' expr
@@ -3004,7 +3004,7 @@ state 175
     $@12  go to state 191
 
 
-state 176
+State 176
 
    53 arg_list: arg_list wslist arg_component_list .
    63 arg_component_list: arg_component_list . arg_component
@@ -3019,7 +3019,7 @@ state 176
     arg_component  go to state 156
 
 
-state 177
+State 177
 
    45 cmd_stmnt: cmd_name '(' optwslist func_call_list optwslist . ')'
    59 func_call_list: func_call_list optwslist . ',' optwslist arg_component_list
@@ -3028,7 +3028,7 @@ state 177
     ','  shift, and go to state 193
 
 
-state 178
+State 178
 
    51 opt_arg_list: opt_arg_list wslist arg_component_list .
    63 arg_component_list: arg_component_list . arg_component
@@ -3043,7 +3043,7 @@ state 178
     arg_component  go to state 156
 
 
-state 179
+State 179
 
    47 func_call: funcref '(' optwslist func_call_list optwslist . ')'
    59 func_call_list: func_call_list optwslist . ',' optwslist arg_component_list
@@ -3052,14 +3052,14 @@ state 179
     ','  shift, and go to state 193
 
 
-state 180
+State 180
 
    80 func_arg_list: IDENT .
 
     $default  reduce using rule 80 (func_arg_list)
 
 
-state 181
+State 181
 
    79 func_args: '(' $@15 func_arg_list . ')'
    81 func_arg_list: func_arg_list . ',' IDENT
@@ -3068,7 +3068,7 @@ state 181
     ','  shift, and go to state 196
 
 
-state 182
+State 182
 
     3 statement_list: statement_list . statement stmnt_terminator
    76 func_def: func_hdr $@13 func_args $@14 statement_list . END
@@ -3116,7 +3116,7 @@ state 182
     null_stmnt        go to state 40
 
 
-state 183
+State 183
 
    92 init: '=' expr .
    97 expr: expr . '|' expr
@@ -3156,14 +3156,14 @@ state 183
     $default  reduce using rule 92 (init)
 
 
-state 184
+State 184
 
    88 decl_list: decl_list ',' $@16 decl_ident .
 
     $default  reduce using rule 88 (decl_list)
 
 
-state 185
+State 185
 
     3 statement_list: statement_list . statement stmnt_terminator
    23 while_stmnt: WHILE '(' expr ')' $@1 statement_list . END
@@ -3211,7 +3211,7 @@ state 185
     null_stmnt        go to state 40
 
 
-state 186
+State 186
 
     3 statement_list: statement_list . statement stmnt_terminator
    30 if_stmnt: IF '(' expr ')' $@5 statement_list . else_clause END
@@ -3261,7 +3261,7 @@ state 186
     null_stmnt        go to state 40
 
 
-state 187
+State 187
 
    25 for_stmnt: FOR '(' assign_stmnt ';' expr ';' . assign_stmnt ')' $@2 statement_list END
 
@@ -3270,7 +3270,7 @@ state 187
     assign_stmnt  go to state 201
 
 
-state 188
+State 188
 
    28 foreach_stmnt: FOREACH VARREF '(' $@3 ws arg_list . ws $@4 ')' statement_list END
    53 arg_list: arg_list . wslist arg_component_list
@@ -3283,7 +3283,7 @@ state 188
     ws      go to state 202
 
 
-state 189
+State 189
 
    59 func_call_list: func_call_list . optwslist ',' optwslist arg_component_list
   118 expr: IDENT '(' $@18 optwslist func_call_list . optwslist $@19 ')'
@@ -3296,7 +3296,7 @@ state 189
     wslist     go to state 119
 
 
-state 190
+State 190
 
    59 func_call_list: func_call_list . optwslist ',' optwslist arg_component_list
   121 expr: FUNCREF '(' $@20 optwslist func_call_list . optwslist $@21 ')'
@@ -3309,21 +3309,21 @@ state 190
     wslist     go to state 119
 
 
-state 191
+State 191
 
    69 arg_component: '{' $@11 expr $@12 . '}'
 
     '}'  shift, and go to state 205
 
 
-state 192
+State 192
 
    45 cmd_stmnt: cmd_name '(' optwslist func_call_list optwslist ')' .
 
     $default  reduce using rule 45 (cmd_stmnt)
 
 
-state 193
+State 193
 
    59 func_call_list: func_call_list optwslist ',' . optwslist arg_component_list
 
@@ -3335,42 +3335,42 @@ state 193
     wslist     go to state 119
 
 
-state 194
+State 194
 
    47 func_call: funcref '(' optwslist func_call_list optwslist ')' .
 
     $default  reduce using rule 47 (func_call)
 
 
-state 195
+State 195
 
    79 func_args: '(' $@15 func_arg_list ')' .
 
     $default  reduce using rule 79 (func_args)
 
 
-state 196
+State 196
 
    81 func_arg_list: func_arg_list ',' . IDENT
 
     IDENT  shift, and go to state 207
 
 
-state 197
+State 197
 
    76 func_def: func_hdr $@13 func_args $@14 statement_list END .
 
     $default  reduce using rule 76 (func_def)
 
 
-state 198
+State 198
 
    23 while_stmnt: WHILE '(' expr ')' $@1 statement_list END .
 
     $default  reduce using rule 23 (while_stmnt)
 
 
-state 199
+State 199
 
    33 else_clause: ELSE . $@6 statement_list
 
@@ -3379,21 +3379,21 @@ state 199
     $@6  go to state 208
 
 
-state 200
+State 200
 
    30 if_stmnt: IF '(' expr ')' $@5 statement_list else_clause . END
 
     END  shift, and go to state 209
 
 
-state 201
+State 201
 
    25 for_stmnt: FOR '(' assign_stmnt ';' expr ';' assign_stmnt . ')' $@2 statement_list END
 
     ')'  shift, and go to state 210
 
 
-state 202
+State 202
 
    28 foreach_stmnt: FOREACH VARREF '(' $@3 ws arg_list ws . $@4 ')' statement_list END
 
@@ -3402,7 +3402,7 @@ state 202
     $@4  go to state 211
 
 
-state 203
+State 203
 
    59 func_call_list: func_call_list optwslist . ',' optwslist arg_component_list
   118 expr: IDENT '(' $@18 optwslist func_call_list optwslist . $@19 ')'
@@ -3414,7 +3414,7 @@ state 203
     $@19  go to state 212
 
 
-state 204
+State 204
 
    59 func_call_list: func_call_list optwslist . ',' optwslist arg_component_list
   121 expr: FUNCREF '(' $@20 optwslist func_call_list optwslist . $@21 ')'
@@ -3426,14 +3426,14 @@ state 204
     $@21  go to state 213
 
 
-state 205
+State 205
 
    69 arg_component: '{' $@11 expr $@12 '}' .
 
     $default  reduce using rule 69 (arg_component)
 
 
-state 206
+State 206
 
    59 func_call_list: func_call_list optwslist ',' optwslist . arg_component_list
 
@@ -3446,14 +3446,14 @@ state 206
     arg_component       go to state 116
 
 
-state 207
+State 207
 
    81 func_arg_list: func_arg_list ',' IDENT .
 
     $default  reduce using rule 81 (func_arg_list)
 
 
-state 208
+State 208
 
    33 else_clause: ELSE $@6 . statement_list
 
@@ -3462,14 +3462,14 @@ state 208
     statement_list  go to state 215
 
 
-state 209
+State 209
 
    30 if_stmnt: IF '(' expr ')' $@5 statement_list else_clause END .
 
     $default  reduce using rule 30 (if_stmnt)
 
 
-state 210
+State 210
 
    25 for_stmnt: FOR '(' assign_stmnt ';' expr ';' assign_stmnt ')' . $@2 statement_list END
 
@@ -3478,28 +3478,28 @@ state 210
     $@2  go to state 216
 
 
-state 211
+State 211
 
    28 foreach_stmnt: FOREACH VARREF '(' $@3 ws arg_list ws $@4 . ')' statement_list END
 
     ')'  shift, and go to state 217
 
 
-state 212
+State 212
 
   118 expr: IDENT '(' $@18 optwslist func_call_list optwslist $@19 . ')'
 
     ')'  shift, and go to state 218
 
 
-state 213
+State 213
 
   121 expr: FUNCREF '(' $@20 optwslist func_call_list optwslist $@21 . ')'
 
     ')'  shift, and go to state 219
 
 
-state 214
+State 214
 
    59 func_call_list: func_call_list optwslist ',' optwslist arg_component_list .
    63 arg_component_list: arg_component_list . arg_component
@@ -3514,7 +3514,7 @@ state 214
     arg_component  go to state 156
 
 
-state 215
+State 215
 
     3 statement_list: statement_list . statement stmnt_terminator
    33 else_clause: ELSE $@6 statement_list .
@@ -3562,7 +3562,7 @@ state 215
     null_stmnt        go to state 40
 
 
-state 216
+State 216
 
    25 for_stmnt: FOR '(' assign_stmnt ';' expr ';' assign_stmnt ')' $@2 . statement_list END
 
@@ -3571,7 +3571,7 @@ state 216
     statement_list  go to state 220
 
 
-state 217
+State 217
 
    28 foreach_stmnt: FOREACH VARREF '(' $@3 ws arg_list ws $@4 ')' . statement_list END
 
@@ -3580,21 +3580,21 @@ state 217
     statement_list  go to state 221
 
 
-state 218
+State 218
 
   118 expr: IDENT '(' $@18 optwslist func_call_list optwslist $@19 ')' .
 
     $default  reduce using rule 118 (expr)
 
 
-state 219
+State 219
 
   121 expr: FUNCREF '(' $@20 optwslist func_call_list optwslist $@21 ')' .
 
     $default  reduce using rule 121 (expr)
 
 
-state 220
+State 220
 
     3 statement_list: statement_list . statement stmnt_terminator
    25 for_stmnt: FOR '(' assign_stmnt ';' expr ';' assign_stmnt ')' $@2 statement_list . END
@@ -3642,7 +3642,7 @@ state 220
     null_stmnt        go to state 40
 
 
-state 221
+State 221
 
     3 statement_list: statement_list . statement stmnt_terminator
    28 foreach_stmnt: FOREACH VARREF '(' $@3 ws arg_list ws $@4 ')' statement_list . END
@@ -3690,14 +3690,14 @@ state 221
     null_stmnt        go to state 40
 
 
-state 222
+State 222
 
    25 for_stmnt: FOR '(' assign_stmnt ';' expr ';' assign_stmnt ')' $@2 statement_list END .
 
     $default  reduce using rule 25 (for_stmnt)
 
 
-state 223
+State 223
 
    28 foreach_stmnt: FOREACH VARREF '(' $@3 ws arg_list ws $@4 ')' statement_list END .
 

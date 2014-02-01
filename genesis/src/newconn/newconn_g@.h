@@ -22,16 +22,6 @@
 #define stdpsynchan_WEIGHT_CHANGE_MOD 4
 #define stdpsynchan_SPIKE -1
 #define stdpsynchan_CALCIUM 5
-
-#define stdpsynchan_AVG_CALCIUM_1 6
-#define stdpsynchan_AVG_CALCIUM_2 7
-#define stdpsynchan_AVG_CALCIUM_3 8
-#define stdpsynchan_AVG_CALCIUM_4 9
-#define stdpsynchan_AVG_CALCIUM_5 10
-#define stdpsynchan_AVG_CALCIUM_6 11
-#define stdpsynchan_AVG_CALCIUM_7 12
-#define stdpsynchan_AVG_CALCIUM_8 13
-
 #define facsynchan_VOLTAGE 0
 #define facsynchan_SPIKE -1
 #define spikegen_INPUT 0
